@@ -20,8 +20,8 @@ public class PathResolutionSpecs
         var result = await cmd.ExecuteBufferedAsync();
 
         // Assert
-        result.IsSuccess.Should().BeTrue();
-        result.StandardOutput.Trim().Should().MatchRegex(@"^\d+\.\d+\.\d+$");
+        result.ExitCode.Should().BeTrue();
+        result.StandardOutput.Trim().Should().MatchRegex(@"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$");
     }
 
     [SkippableFact(Timeout = 15000)]
